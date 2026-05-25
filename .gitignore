@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+build/
+dist/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# DS Store
+.DS_Store
+
+# VSCode
+.vscode/
+
+# Data files
+*.pkl
+*.joblib
+
+# Large files
+*.zip
+*.tar.gz
