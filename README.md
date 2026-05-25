@@ -1,70 +1,96 @@
 # Aviation Analytics ML Platform
 
-An end-to-end aviation analytics and airline delay prediction platform built using AWS EMR, Hive, and Machine Learning.
+An end-to-end aviation analytics and airline delay prediction platform built using AWS EMR, Apache Hive, and Machine Learning.
 
-## Project Overview
+This project demonstrates a complete data engineering and machine learning workflow for large-scale airline delay analytics using distributed processing and classification models.
 
-This project focuses on predicting airline delays using distributed data engineering workflows and machine learning classification models.
+---
 
-The workflow includes:
-- Distributed data processing using AWS EMR and Hive
-- Balanced sampling strategy for delayed and non-delayed flights
-- Dataset merging and preprocessing
-- Training and evaluating multiple machine learning models
-- Final prediction on unseen target datasets
+# Project Overview
 
-## Architecture Workflow
+The objective of this project is to predict whether a flight will be delayed based on operational flight attributes.
+
+The project combines:
+
+- Distributed data engineering using AWS EMR and Hive
+- Large-scale dataset preprocessing
+- Feature engineering and model training
+- Multi-model evaluation and comparison
+- Final prediction generation on unseen target datasets
+- Exporting trained models and prediction artifacts
+
+---
+
+# End-to-End Workflow
 
 ```text
-Hive Sampling
-      ↓
-Balanced Datasets
-      ↓
-Merged Dataset
-      ↓
-Data Cleaning
-      ↓
-Feature Engineering
-      ↓
+AWS EMR + Hive
+        ↓
+Balanced Flight Sampling
+        ↓
+Merged Airline Dataset
+        ↓
+Data Cleaning & Feature Engineering
+        ↓
 Feature Encoding
-      ↓
+        ↓
 Train/Test Split
-      ↓
+        ↓
 Model Training
-      ↓
+        ↓
 Model Evaluation
-      ↓
+        ↓
 Best Model Selection
-      ↓
+        ↓
 Target Dataset Prediction
+        ↓
+Metrics & Predictions Export
 ```
 
-## Technologies Used
+---
 
+# Technologies Used
+
+## Data Engineering
+- AWS EMR
+- Apache Hive
+- Hadoop Ecosystem
+- Distributed Query Processing
+
+## Machine Learning
 - Python
 - Pandas
 - NumPy
 - Scikit-learn
 - XGBoost
 - CatBoost
-- AWS EMR
-- Apache Hive
+- Joblib
+
+## Visualization & Development
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
+- VS Code
+- Git & GitHub
 
-## Models Implemented
+---
 
-- Decision Tree Classifier
-- Random Forest Classifier
-- CatBoost Classifier
-- XGBoost Classifier
+# Machine Learning Models Implemented
 
-## Best Performing Model
+| Model | Purpose |
+|---|---|
+| Decision Tree Classifier | Baseline interpretable classifier |
+| Random Forest Classifier | Ensemble learning and robustness |
+| CatBoost Classifier | Gradient boosting for categorical patterns |
+| XGBoost Classifier | Optimized boosting model for best performance |
 
-XGBoost achieved the best overall performance during evaluation.
+---
 
-### Final Metrics
+# Best Performing Model
+
+XGBoost achieved the strongest overall performance after threshold tuning and evaluation.
+
+## Final Evaluation Metrics
 
 | Metric | Score |
 |---|---|
@@ -72,53 +98,99 @@ XGBoost achieved the best overall performance during evaluation.
 | Precision | 93.37% |
 | Recall | 83.11% |
 | F1 Score | 87.94% |
+| ROC-AUC | 95.72% |
 
-## Dataset Engineering
+---
 
-The project uses balanced datasets sampled from distributed Hive tables.
+# Dataset Engineering
 
-Each team member contributed data from assigned airline records and merged them into a consolidated dataset for model training.
+The training dataset was generated using distributed Hive sampling workflows on AWS EMR.
 
-### Features Removed
+Balanced datasets were created to ensure equal representation of delayed and non-delayed flights.
+
+The final merged dataset was used for preprocessing, feature engineering, encoding, and model training.
+
+## Features Removed During Preprocessing
 
 | Feature | Reason |
 |---|---|
-| Delayed | Target Variable |
-| ArrDelay | Data Leakage |
-| DepDelay | Data Leakage |
-| AirTime | Missing in Target Dataset |
+| Delayed | Target variable |
+| ArrDelay | Data leakage |
+| DepDelay | Data leakage |
+| AirTime | Missing in target dataset |
+| CancellationCode | Sparse / low utility |
 
-## Repository Structure
+---
+
+# Exported Outputs
+
+The project exports:
+
+- Model evaluation metrics CSV
+- Target dataset prediction CSV
+- Serialized trained models using Joblib
+
+Generated outputs are stored inside:
+
+```text
+results/
+├── metrics/
+├── predictions/
+└── trained_models/
+```
+
+---
+
+# Repository Structure
 
 ```text
 aviation-analytics-ml-platform/
 │
 ├── README.md
 ├── requirements.txt
-├── notebooks/
 ├── data/
+│   └── raw/
+├── notebooks/
+│   └── Airline_Delay_Prediction_End_to_End.ipynb
 ├── results/
-├── presentations/
+│   ├── metrics/
+│   ├── predictions/
+│   └── trained_models/
 ├── screenshots/
-└── docs/
+├── docs/
+└── presentations/
 ```
 
-## Future Enhancements
+---
+
+# Key Engineering Highlights
+
+- Built distributed Hive workflows for airline data processing
+- Performed large-scale dataset merging and preprocessing
+- Implemented feature engineering and encoding pipelines
+- Compared multiple ML classification models
+- Tuned XGBoost threshold for improved F1 performance
+- Exported reusable prediction artifacts and trained models
+- Structured repository for reproducibility and portfolio presentation
+
+---
+
+# Future Enhancements
 
 Planned future enhancements include:
-- Streamlit dashboard
+
+- Streamlit analytics dashboard
+- Real-time prediction APIs
+- Flight operations monitoring dashboards
+- Weather data integration
 - GenAI-powered aviation assistant
 - RAG-based aviation analytics chatbot
-- Real-time flight delay prediction APIs
-- Weather and operational data integrations
+- LLM-powered operational insights
 
-## Contributors
+---
 
-This project was completed as part of a collaborative academic group project.
+# Author
 
-Primary contributions include:
-- AWS EMR and Hive workflow
-- Balanced dataset generation
-- Data preprocessing and feature engineering
-- Model evaluation and comparison
-- XGBoost optimization and analysis
+Arifa Farhath
+
+This project was developed as part of graduate-level machine learning and data engineering work with additional refactoring and production-style repository structuring for portfolio presentation.
